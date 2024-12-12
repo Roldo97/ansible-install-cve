@@ -1,0 +1,4 @@
+inventory
+collections/ansible_collections
+ansible-navigator.log
+files/*
