@@ -29,6 +29,7 @@ Role Variables
 | mail_body                    | The body of the email being sent.                                                                                                                                |                                                                                        |
 | mail_sender                  | The email-address the mail is sent from. May contain address and phrase.                                                                                         |                                                                                        |
 | mail_recipient               | The email-address(es) the mail is being sent to.                                                                                                                 |                                                                                        |
+| tarea_sga                    | An arbitraty value to identify a report.                                                                                                                         |                                                                                        |
 
 Dependencies
 ------------
