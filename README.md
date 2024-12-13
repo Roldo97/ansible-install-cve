@@ -30,6 +30,9 @@ Role Variables
 | mail_sender                  | The email-address the mail is sent from. May contain address and phrase.                                                                                         |                                                                                        |
 | mail_recipient               | The email-address(es) the mail is being sent to.                                                                                                                 |                                                                                        |
 | tarea_sga                    | An arbitraty value to identify a report.                                                                                                                         |                                                                                        |
+| satllite_host                | Hostname of Satellite server used to access CVE data                                                                                                             | satellite01.example.com                                                                |
+| satllite_user                | Username user to access Satellite API (read)                                                                                                                     | admin                                                                                  |
+| satllite_password            | User password to access Satellite API (read)                                                                                                                     |                                                                                        |
 
 Dependencies
 ------------
