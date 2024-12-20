@@ -1,0 +1,6 @@
+---
+- name: Gets monthly report
+  hosts: localhost
+  become: true
+  roles:
+    - monthly-report

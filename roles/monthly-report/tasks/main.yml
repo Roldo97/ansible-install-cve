@@ -1,0 +1,31 @@
+---
+# tasks file for monthly-report
+- name: Find report files to be consolidated
+  ansible.builtin.find:
+    paths: files/
+    patterns: '*.csv'
+    age: 1m
+  register: reports
+
+#- name: Debug reports
+#  ansible.builtin.debug:
+#    var: reports
+#
+
+- name: Save current date and time in a variable
+  ansible.builtin.set_fact:
+    current_date: "{{ ansible_date_time.year }}-{{ ansible_date_time.month }}-{{ ansible_date_time.day }}-{{ ansible_date_time.hour }}-{{ ansible_date_time.minute }}"
+
+- name: Ensures report file exists
+  ansible.builtin.lineinfile:
+    path: "files/monthly-report-{{ current_date }}.csv"
+    line: "HOSTNAME,CVE,SEVERITY,INSTALL DATE,REBOOT REQUIRED"
+    create: yes
+  delegate_to: localhost
+  run_once: true
+
+- name: Fills report
+  ansible.builtin.lineinfile:
+    path: "files/monthly-report-{{ current_date }}.csv"
+    line: "{{ lookup('ansible.builtin.file', item['path']) | regex_replace('^HOSTNAME,CVE,SEVERITY,INSTALL DATE,REBOOT REQUIRED$\n', '', multiline=True, ignorecase=True) }}"
+  loop: "{{ reports['files'] }}"
